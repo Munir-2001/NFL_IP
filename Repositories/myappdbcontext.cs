@@ -15,5 +15,9 @@ namespace Repositories
         public DbSet<commentsobj> comments { get; set; }
         public DbSet<countries> countries { get; set; }
 
+        public DbSet<Currency> Currency { get; set; }
+        public DbSet<reportstatus> reportstatus { get; set; }
+
+
     }
 }

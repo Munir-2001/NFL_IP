@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Repositories;
 
@@ -11,9 +12,10 @@ using Repositories;
 namespace Repositories.Migrations
 {
     [DbContext(typeof(myappcontext))]
-    partial class myappcontextModelSnapshot : ModelSnapshot
+    [Migration("20231205114951_AWSfirst")]
+    partial class AWSfirst
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -83,23 +85,6 @@ namespace Repositories.Migrations
                     b.ToTable("countries");
                 });
 
-            modelBuilder.Entity("DataModels.Currency", b =>
-                {
-                    b.Property<int>("id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("id"), 1L, 1);
-
-                    b.Property<string>("currency")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("id");
-
-                    b.ToTable("Currency");
-                });
-
             modelBuilder.Entity("DataModels.Ipobj", b =>
                 {
                     b.Property<int>("Id")
@@ -107,10 +92,6 @@ namespace Repositories.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<string>("Currency")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("IPListname")
                         .IsRequired()
@@ -149,10 +130,6 @@ namespace Repositories.Migrations
                     b.Property<DateTime>("renewaldate")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("reportstatus")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("status")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -160,23 +137,6 @@ namespace Repositories.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Iplists");
-                });
-
-            modelBuilder.Entity("DataModels.reportstatus", b =>
-                {
-                    b.Property<int>("id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("id"), 1L, 1);
-
-                    b.Property<string>("statusreport")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("id");
-
-                    b.ToTable("reportstatus");
                 });
 #pragma warning restore 612, 618
         }

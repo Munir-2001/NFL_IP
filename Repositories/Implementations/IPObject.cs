@@ -1,4 +1,5 @@
 ﻿using DataModels;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ModelBinding.Binders;
 using Microsoft.EntityFrameworkCore;
 using Repositories.Interfaces;
@@ -23,6 +24,18 @@ namespace Repositories.Implementations
             var k = await _context.countries.ToListAsync();
             return k;
         }
+
+        public async Task<List<reportstatus>> Getreportstatus()
+        {
+            var k = await _context.reportstatus.ToListAsync();
+            return k;
+        }
+
+        public async Task<List<Currency>> GetCurrency()
+        {
+            var k = await _context.Currency.ToListAsync();
+            return k;
+        }
         public async Task<List<classification>> GetClassifications()
         {
             var l = await _context.classifications.ToListAsync();
@@ -31,7 +44,8 @@ namespace Repositories.Implementations
         public async Task<int> Add(Ipobj model)
         {
 
-            await _context.Iplists.AddAsync(model);
+         var l=   await _context.Iplists.AddAsync(model);
+
 
 
             Save();
@@ -104,15 +118,17 @@ namespace Repositories.Implementations
         public async Task<Ipobj> GetbyId(int id)
         {
             var k = await _context.Iplists.FindAsync(id);
-            return k;
+            
+            return (k);
 
 
         }
 
+        
 
 
 
-        public async Task<int> Update(Ipobj model)
+            public async Task<int> Update(Ipobj model)
         {
 
             var iplist = await _context.Iplists.FindAsync(model.Id);
@@ -122,10 +138,16 @@ namespace Repositories.Implementations
                 iplist.date = model.date;
                 iplist.entity = model.entity;
                 iplist.cost = model.cost;
+                iplist.entityname = model.entityname;
                 iplist.renewaldate = model.renewaldate;
                 iplist.IPListname = model.IPListname;
                 iplist.country = model.country;
                 iplist.logos = model.logos;
+                iplist.lawyer=model.lawyer;
+                iplist.Currency = model.Currency;
+                iplist.reportstatus = model.reportstatus;
+                iplist.classification= model.classification;
+
                 _context.Update(iplist);
                 await Save();
 

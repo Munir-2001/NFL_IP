@@ -22,6 +22,9 @@ namespace DataModels
         [DataType(DataType.Date)]
         public DateTime renewaldate { get; set; }
         public int cost { get; set; }
+
+        public string Currency { get; set; }
+        public string reportstatus { get; set; }
         public string classification { get; set; }
 
     }
