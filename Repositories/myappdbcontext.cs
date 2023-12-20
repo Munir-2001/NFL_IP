@@ -8,6 +8,7 @@ namespace Repositories
     {
 
         public myappcontext(DbContextOptions options) : base(options) { }
+        
         // public DbSet<classification>
         public DbSet<Ipobj> Iplists { get; set; }
      //   public DbSet<entities> Entities { get; set; }
